@@ -16,8 +16,8 @@ class Menu:
                         "2": self.message_count,
                         "3": self.get_unread_indexes,
                         "4": self.get_message,
-                        #"5": self.delete_message,
-                        #"6": self.clear,
+                        "5": self.delete_message,
+                        "6": self.clear,
                         "7":self.exit
                         }
 
@@ -90,6 +90,7 @@ class Menu:
 
     def get_message(self):
         """ Despliega una nota """
+        self.clear_screen()
         leido="leido"
         idmensage = input("Ingrese el id del mensaje: ")
         My_box = self.service_message.my_box
@@ -100,6 +101,15 @@ class Menu:
                 self.service_message.modify_message(box.id, box.from_number,box.text_of_sms,leido)
         self.press_enter()
 
+    def delete_message(self):
+        idmessage = input("Ingrese el id del mensaje: ")
+        self.service_message.delete_message(idmessage)
+        self.press_enter()
+
+    def clear(self):
+        self.service_message.clear()
+        self.press_enter()
+        
     def exit(self):
         """ Cierra el reproductor musical. """
         print("Gracias por utilizar nuestro Servicios de Mensajeria.")
