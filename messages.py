@@ -2,7 +2,7 @@
 import datetime
 
 #Declara una variable global
-id_message = False
+id_message = 0
 
 class Messages:
     '''
