@@ -52,5 +52,8 @@ class ShortMessageService:
     
     def clear(self):
         """Elimina todos los mensaje de la bandeja"""
+        for msm in self.my_box:
+            msm.remove(id)
+
 
 
