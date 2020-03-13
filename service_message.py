@@ -24,23 +24,39 @@ class ShortMessageService:
         for msm in self.my_box:
             if str(msm.has_been_viewed) == str(has_been_viewed):
                 return msm
-    
 
-    def _search_note(self, id_message):
+    def modify_message(self, id_message, from_number, text_of_sms, has_been_viewed):
+        """
+        Encuentra la nota con el valor del id y modifica
+        el contenido de la misma.
+        """
+        box = self._search_message(id_message)
+
+        if box:
+            box.id=id_message
+            box.from_number = from_number
+            box.text_of_sms = text_of_sms
+            box.has_been_viewed = has_been_viewed
+            return True
+        else:
+            print("No existe un mensaje con ese id: {0}"
+                  .format(id_message))
+            return False
+
+    def _search_message(self, id_message):
         """
         Busca un mensaje con el id enviado.
         Esta función es privada 
         """
         for msm in self.my_box:
             if str(msm.id) == str(id_message):
-                
                 return msm
         
         return None
     
     def delete_message(self, id_message):
         """Elimina uno de los mensajes en la bandeja"""
-        msm = self._search_note(id_message)
+        msm = self._search_message(id_message)
 
         if msm:
             self.my_box.remove(id_message)
@@ -52,8 +68,7 @@ class ShortMessageService:
     
     def clear(self):
         """Elimina todos los mensaje de la bandeja"""
-        for msm in self.my_box:
-            msm.remove(id)
-
+        self.my_box.remove()
+        print("Todos los mensajes Eliminados")
 
 
