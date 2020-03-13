@@ -8,3 +8,6 @@ class Menu:
     """
     Despliega un menú que responde a las elecciones del usuario.
     """
+
+    def __int__(parameter_list):
+        pass
