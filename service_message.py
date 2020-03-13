@@ -57,18 +57,21 @@ class ShortMessageService:
     def delete_message(self, id_message):
         """Elimina uno de los mensajes en la bandeja"""
         msm = self._search_message(id_message)
-
         if msm:
-            self.my_box.remove(id_message)
+            self.my_box.remove(msm)
+            print("El mensaje con el id {0} fue eliminado".format(id_message))
             return True
         else:
-            print("No existe una nota con el id: {0}"
+            print("No existe un mensaje con el id: {0}"
             .format(id_message))
             return False
     
     def clear(self):
         """Elimina todos los mensaje de la bandeja"""
-        self.my_box.remove()
-        print("Todos los mensajes Eliminados")
+        if self.my_box != 0:
+            self.my_box.clear()
+            print("Todos los mensajes Eliminados")
+        else:
+            print("La bandeja ya esta limpia")
 
 
